@@ -30,8 +30,9 @@ const applicationSchema = new Schema({
         type:Date
     },
     isApproved:{
-        type:Boolean,
-        default:false
+        type:String,
+        enum:['pending','approved','rejected'],
+        default:'pending'
     }
 })
 
