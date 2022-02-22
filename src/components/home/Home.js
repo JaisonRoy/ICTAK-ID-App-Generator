@@ -9,7 +9,7 @@ const Home = () => {
         <div className="home">
 
           <div className="image">
-            <img className="homeImg" src="https://www.margsoft.com/img/e_admin/graphic/employee-IDcard.png" alt="" />
+            <img className="homeImg" src="https://i.pinimg.com/originals/05/06/b8/0506b84bb9125f8cbf61217243725e35.png" alt="" />
           </div>
           <div class="details">
             <h1 className="intro">Create your ID card instantly</h1>
