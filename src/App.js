@@ -9,16 +9,12 @@ function App() {
   <>
     <Router>
 
-      <Navbar/>
+      <Header/>
 
       <Routes>
 
-<<<<<<< HEAD
         <Route path="/home" element={<Home />} />
         <Route path="/application" element={<Application />} />
-=======
-        <Route path="/" element={<Home />} />
->>>>>>> 5c43f683572bee3847394ea95e196bda05f9374b
 
       </Routes>
       
