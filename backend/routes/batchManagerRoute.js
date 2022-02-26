@@ -4,6 +4,8 @@ const applicationModel = require("../models/applicationModel");
 
 routes.get("/applicatioons", (req, res) => {});
 
-routes.put("/:id/approveapplications", (req, res) => {});
+routes.patch("/:id/approveapplications", (req, res) => {});
 
-routes.put("/:id/rejectapplications", (req, res) => {});
+routes.patch("/:id/rejectapplications", (req, res) => {});
+
+module.exports = routes;

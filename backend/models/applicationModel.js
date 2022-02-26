@@ -18,10 +18,10 @@ const applicationSchema = new Schema({
         type:Number,
     },
     batch:{
-        type:Schema.Types.ObjectId
+        type:String
     },
     course:{
-        type:Schema.Types.ObjectId
+        type:String
     },
     startDate:{
         type:Date

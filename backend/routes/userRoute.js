@@ -4,28 +4,6 @@ const bcrypt = require("bcrypt");
 const userModel = require("../models/userModel");
 
 
-const verifyJWT = (req, res, next) => {
-	const token = req.headers["x-access-token"]?.split(" ")[1];
-	if (token) {
-		jwt.verify(token, process.env.PASSPORTSECRET, (err, decoded) => {
-			if (err)
-				return res.json({
-					loggedin: false,
-					message: "Failed to authenticate",
-				});
-			req.user = {};
-			req.user.id = decoded.id;
-			req.user.username = decoded.name;
-			req.user.isAdmin = decoded.isAdmin;
-            req.user.isBatchManager = decoded.isBatchManager;
-			next();
-		});
-	} else {
-		res.json({ message: "Incorrect Token Given", loggedin: false });
-	}
-};
-
-
 routes.post("/reg", async (req, res) => {
 	try {
 		const takenmail = await userModel.findOne({ email: req.body.email });
@@ -36,59 +14,43 @@ routes.post("/reg", async (req, res) => {
 			const user = new userModel({
 				name: req.body.name,
 				email: req.body.email,
-				password: password,
+				hashPassword: password,
 			});
-			await user.save();
-			res.status(200).json("User added");
+			await user.save((err, user) => {
+				if (err) {
+					return res.status(400).send({
+						message: err,
+					});
+				} else {
+					user.hashPassword = undefined;
+					return res.status(200).json(user);
+				}
+			});
 		}
 	} catch (error) {
 		res.status(500).json(error);
-	}
+	}	
 });
 
 routes.post("/login", async (req, res) => {
 	try {
 		const { email, password } = req.body;
-		userModel.findOne({ email: email }).then((user) => {
-			if (!user) {
-				return res.json({ message: "Invalid Email or Password" });
-			}
-			bcrypt.compare(password, user.password).then((isvalid) => {
-				if (isvalid) {
-					const payload = {
-						id: user._id,
-						name: user.name,
-						isAdmin: user.isAdmin,
-                        isBatchManager: user.isBatchManager,
-					};
-					console.log(payload);
-					jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 86400 }, (err, token) => {
-						if (err) return res.json({ message: err });
-						return res.json({
-							message: "Success",
-							token: "Bearer " + token,
-						});
-					});
-				} else {
-					return res.json({ message: "Invalid Email or Password" });
-				}
-			});
-		});
+		userModel.findOne({ email: email },(err, user) => {
+        if (err) throw err;
+        if (!user) {
+            res.status(401).json({ message: 'Authentication failed. No user found'});
+        } else if (user) {
+            if (!user.comparePassword(req.body.password, user.hashPassword)) {
+                res.status(401).json({ message: 'Authentication failed. Wrong password'});
+            } else {
+                return res.json({token: jwt.sign({ isAdmin: user.isAdmin, isBatchManager: user.isBatchManager, email: user.email, username: user.username, _id: user.id}, 'RESTFULAPIs')});
+            }
+        }
+    })
 	} catch (error) {
 		res.status(500).json(error);
 	}
 });
-
-
-routes.get("/getname", verifyJWT, (req, res) => {
-	res.json({
-		loggedin: true,
-		username: req.user.username,
-		isAdmin: req.user.isAdmin,
-		id: req.user.id,
-	});
-});
-
 
 
 module.exports = routes;
