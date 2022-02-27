@@ -15,6 +15,7 @@ routes.post("/postapplication", loginRequired, async(req, res) => {
         const app = new applicationModel({
             student: req.user._id,
             name: req.body.name,
+            email: req.body.email,
             phone: req.body.phone,
             batch: req.body.batch,
             course: req.body.course,
