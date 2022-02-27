@@ -1,21 +1,28 @@
-body{
+*{
     margin:0;
     padding:0;
 }
+.applicationbody{
+	display: flex;
+    justify-content: center;
+    text-align: center;
+    background-image: linear-gradient(90deg, rgb(130, 11, 160),rgb(11, 118, 160),rgb(11, 118, 160), rgb(20, 68, 172));
+
+}
 .application{
-    width: 350px;
-	height: 750px;
+    width: 500px;
+	height: 900px;
     justify-content: center;
 	align-items: center;
-	background: rgb(247, 134, 4);
+	background: rgb(36, 235, 235);
 	overflow: hidden;
 	border-radius: 10px;
-    margin-left: 30%;
-    margin-top: 5%;
+    margin-left: 25%;
+    margin-top: 1%;
     margin-bottom: 100px;
     padding:55px;
 }
-#title{
+#applicationtitle{
 	color: rgb(58, 7, 245);
 	font-size: 2.3em;
 	justify-content: center;
@@ -26,8 +33,8 @@ body{
 
 .applicationform input{
 	width: 60%;
-	height: 20px;
-	background: #02edf5;
+	height: 30px;
+	background: #f5f8f8;
 	justify-content: center;
 	display: flex;
     color: black;
@@ -36,8 +43,10 @@ body{
 	border: none;
 	outline: none;
 	border-radius: 5px;
+	resize: vertical;
 }
 .applicationform label{
+	font-size: 15px;
     justify-content: center;
 	display: flex;
     color: black;
@@ -51,7 +60,7 @@ body{
 	justify-content: center;
 	display: block;
 	color: #fff;
-	background: #f52004;
+	background: #3004f5;
 	font-size: 1em;
 	font-weight: bold;
 	margin-top: 20px;
@@ -60,9 +69,9 @@ body{
 	border-radius: 5px;
 }
 #coursetype{
-    width: 63%;
+    width: 61%;
 	height: 30px;
-	background: #02edf5;
+	background: #f5f7f7;
 	justify-content: center;
 	display: flex;
 	margin: 5px auto;
@@ -71,3 +80,46 @@ body{
 	outline: none;
 	border-radius: 5px;  
 }
+.applicationimage{
+	position: fixed;
+	width: 400px;
+	height: 200px;
+	overflow: hidden;
+	background-color: #f5f7f7;
+    margin-left: -20%;
+    margin-top: 15%;
+    margin-bottom: 100px;
+	max-width: 100%;
+}
+
+
+/* .col-25 {
+	float: left;
+	width: 25%;
+	margin-top: 6px;
+  }
+  
+  .col-75 {
+	float: left;
+	width: 75%;
+	margin-top: 6px;
+  }
+  
+  .row:after {
+	content: "";
+	display: table;
+	clear: both;
+  }
+  
+  @media screen and (max-width: 600px) {
+	.col-25, .col-75, input[type=submit] {
+	  width: 100%;
+	  margin-top: 0;
+	  
+	}
+} */
+@media(max-width: 1300px) { 
+	.applicationimage{ 
+	  display: none;
+	}
+  }

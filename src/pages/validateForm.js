@@ -33,3 +33,36 @@ export const validateLogin = (formValues) => {
 
     return errors;
 }
+export const Validateapplication = (applicationValues) => {
+    const errors = {};
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    const numreg = /^\(?([0-9]{3})[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+
+    if (!applicationValues.username) {
+        errors.username = "Username is required";
+    }
+    if (!applicationValues.coursetype) {
+        errors.coursetype = "Course type is required";
+    }
+    if (!applicationValues.email) {
+        errors.email = "Email is required";
+    } else if (!regex.test(applicationValues.email)) {
+        errors.email = "Email is invalid";
+    }
+    if (!applicationValues.photo) {
+        errors.photo = "Photo is required";
+    }
+
+    if (!applicationValues.phoneno) {
+        errors.phoneno = "Phone Number is required";
+    }
+    if (!applicationValues.phoneno) {
+        errors.phoneno = "Phone Number is required";
+    } else if (!numreg.test(applicationValues.phoneno)) {
+        errors.phoneno = "Phone Number is invalid";
+    }
+    if (!applicationValues.batch) {
+        errors.batch = "Batch is required";
+    }
+    return errors;
+}

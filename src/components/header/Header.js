@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import "./Header.css"
 
 function Header(props) {
     return (
@@ -7,12 +8,14 @@ function Header(props) {
             
             <nav className="header">
                
-                <div>
+                <div className='sidenav'>
 
-                    <Link className="link" to="/home">Home</Link>
+                <img src='https://ictkerala.org/wp-content/uploads/2019/01/cropped-ict-ico.png' alt="Hlogo" id='headerlogo'></img>
+
+                    <Link className="link" to="/studenthome">Home</Link>
                     <Link className="link" to="/application">Application</Link>
                     <Link className="link" to="/status">Status</Link>
-                    <Link className="link" to="/logout">Logout</Link>
+                    <Link className="link" to="/login">Logout</Link>
     
                 </div>
             </nav>
