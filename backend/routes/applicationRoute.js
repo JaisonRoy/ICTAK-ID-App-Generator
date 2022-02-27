@@ -1,4 +1,32 @@
 const routes = require("express").Router();
+const path = require('path');
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './uploads/');
+    },
+    filename: function(req, file,cb){
+        cb(null,new Date().toISOString().replace(/:/g, '-')+ file.originalname);
+    }
+});
+
+const fileFilter = (req,file,cb)=>{
+    if(file.mimetype==='image/jpeg' || file.mimetype==='image/png'){
+        cb(null,true);
+    }
+    else{
+        cb(null,false);
+    }
+}
+
+const upload = multer({
+    storage:storage, 
+    limits :{
+        fileSize: 1024 *1024 *5 // upto 5 MB
+    },
+    fileFilter : fileFilter
+});
 
 const applicationModel = require("../models/applicationModel");
 
@@ -10,12 +38,13 @@ const loginRequired = (req, res, next) => {
 	}
 };
 
-routes.post("/postapplication", loginRequired, async(req, res) => {
+routes.post("/postapplication",upload.single('photo') , loginRequired, async(req, res) => {
 	try {
+        console.log(req.file);
         const app = new applicationModel({
             student: req.user._id,
             name: req.body.name,
-            email: req.body.email,
+            photo: req.file.path,
             phone: req.body.phone,
             batch: req.body.batch,
             course: req.body.course,
@@ -37,7 +66,7 @@ routes.post("/postapplication", loginRequired, async(req, res) => {
 	}
 });
 
-routes.get("/applicationstatus", loginRequired, async(req, res) => {
+routes.get("/applicationstatus", loginRequired,  async(req, res) => {
     try {
         const app = await applicationModel.findOne({student:req.user._id});
         const { student, phone, photo,  ...appstat } = app._doc;
