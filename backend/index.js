@@ -21,6 +21,8 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.use('/uploads', express.static('uploads'));
+
 // JWT setup
 app.use((req, res, next) => {
     if (req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0] === 'JWT') {
