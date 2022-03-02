@@ -22,7 +22,7 @@ const userSchema = new Schema({
     isBatchManager:{
         type:Boolean,
         default:false
-    }
+    } 
 })
 
 userSchema.methods.comparePassword = (password, hashPassword) => {

@@ -22,12 +22,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use('/uploads', express.static('uploads'));
-
+ 
 // JWT setup
 app.use((req, res, next) => {
+
     if (req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0] === 'JWT') {
         jsonwebtoken.verify(req.headers.authorization.split(' ')[1], 'RESTFULAPIs', (err, decode) => {
-            if (err) req.user = undefined;
+            if (err) {req.user = undefined;}
             req.user = decode;
             next();
         });
@@ -37,11 +38,12 @@ app.use((req, res, next) => {
     }
 });
 
+
 //routes
-app.use('/user', userRoute);
-app.use('/admin', adminRoute);
-app.use('/application', applicationRoute);
-app.use('/batch', batchManagerRoute)
+app.use('/api/user', userRoute);
+app.use('/api/admin', adminRoute);
+app.use('/api/application', applicationRoute);
+app.use('/api/batch', batchManagerRoute)
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

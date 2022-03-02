@@ -10,11 +10,11 @@ routes.post("/reg", async (req, res) => {
 		if (takenmail) {
 			res.json({ message: "Email has already been taken" });
 		} else {
-			password = await bcrypt.hash(req.body.password, 10);
+			let password = await bcrypt.hash(req.body.password, 10);
 			const user = new userModel({
 				name: req.body.name,
 				email: req.body.email,
-				hashPassword: password,
+				hashPassword: password
 			});
 			await user.save((err, user) => {
 				if (err) {
@@ -23,7 +23,7 @@ routes.post("/reg", async (req, res) => {
 					});
 				} else {
 					user.hashPassword = undefined;
-					return res.status(200).json(user);
+					return res.status(200).json({message:'Successfully Registered. Please Log In'});
 				}
 			});
 		}
@@ -34,21 +34,22 @@ routes.post("/reg", async (req, res) => {
 
 routes.post("/login", async (req, res) => {
 	try {
-		const { email, password } = req.body;
+		const { email } = req.body;
 		userModel.findOne({ email: email },(err, user) => {
-        if (err) throw err;
+        if (err) {throw err;}
         if (!user) {
-            res.status(401).json({ message: 'Authentication failed. No user found'});
+            res.json({ message: 'Authentication failed. No user found'});
         } else if (user) {
             if (!user.comparePassword(req.body.password, user.hashPassword)) {
-                res.status(401).json({ message: 'Authentication failed. Wrong password'});
+                res.json({ message: 'Authentication failed. Wrong password'});
             } else {
-                return res.json({token: jwt.sign({ isAdmin: user.isAdmin, isBatchManager: user.isBatchManager, email: user.email, username: user.username, _id: user.id}, 'RESTFULAPIs')});
+                return res.json({token: jwt.sign({ isAdmin: user.isAdmin, isBatchManager: user.isBatchManager, email: user.email, username: user.username, _id: user.id}, 'RESTFULAPIs'), message: 'Login Successfull'});
             }
         }
     })
 	} catch (error) {
 		res.status(500).json(error);
+		console.log('error');
 	}
 });
 

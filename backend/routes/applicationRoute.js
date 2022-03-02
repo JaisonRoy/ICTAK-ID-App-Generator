@@ -44,10 +44,11 @@ routes.post("/postapplication",upload.single('photo') , loginRequired, async(req
         const app = new applicationModel({
             student: req.user._id,
             name: req.body.name,
+            email: req.body.email,
             photo: req.file.path,
             phone: req.body.phone,
-            batch: req.body.batch,
-            course: req.body.course,
+            // batch: req.body.batch,
+            // course: req.body.course,
             startDate: req.body.sdate,
             endDate:req.body.edate
         })

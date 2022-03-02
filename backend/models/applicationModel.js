@@ -7,7 +7,7 @@ const applicationSchema = new Schema({
 		required: true,
 	},
 	name: {
-		type: String,
+		type: String, 
 		required: true,
 	},
 	email: {
