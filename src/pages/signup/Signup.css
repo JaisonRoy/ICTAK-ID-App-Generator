@@ -1,4 +1,5 @@
-.box {
+.signup {
+  height: 100vh;
     display: flex;
     justify-content: center;
     text-align: center;
@@ -6,8 +7,12 @@
 }
 
 .content {
-    margin-top: 20px;
-    margin-bottom: 20px;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  height: 580px;
+  width: 430px;
     text-align: left;
     background-color: whitesmoke;
     border-radius: .7em;
@@ -17,8 +22,13 @@
 }
 
 .fld {
+  margin-top: 5%;
   width: 20em;
   height: 3rem;
+  border: none;
+  background-color: whitesmoke;
+  font-size: large;
+  border-bottom: 2px solid rgba(128, 128, 128, 0.616);
 }
 
 .fld::placeholder {
@@ -37,10 +47,10 @@
   font-weight: bold;
   text-shadow: 5px 5px 5px black
 }
-.companyName,
+/* .companyName,
 .name,
-.password,
-.cpassword,
+.password, */
+/* .cpassword,
 .email {
   padding-top: 0em;
   padding-bottom: 0em;
@@ -51,15 +61,7 @@
 .cpassword,
 .email, p{
   margin-bottom: 0px;
-}
-
-
-.fld{
-  border: none;
-  background-color: whitesmoke;
-  font-size: large;
-  border-bottom: 2px solid rgba(128, 128, 128, 0.616);
-}
+} */
 
 .button {
   border: none;

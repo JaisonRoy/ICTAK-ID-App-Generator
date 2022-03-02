@@ -14,9 +14,14 @@ export const validateSignup = (formValues) => {
         errors.password = "Password is required";
     } else if (formValues.password.length < 5) {
         errors.password = "Password is too short";
-    } else if (formValues.password !== formValues.retypePsw) {
-        errors.password = "Passwords must match";
+    } 
+    if (!formValues.cpassword) {
+        errors.cpassword = "Confirm Password required";
     }
+    if (formValues.password !== formValues.cpassword) {
+        errors.cpassword = "Passwords must match";
+    }
+   
 
     return errors;
 }
@@ -24,8 +29,8 @@ export const validateSignup = (formValues) => {
 export const validateLogin = (formValues) => {
     const errors = {};
 
-    if (!formValues.username) {
-        errors.username = "Username is required";
+    if (!formValues.email) {
+        errors.email = "Email is required";
     }
     if (!formValues.password) {
         errors.password = "Password is required";
