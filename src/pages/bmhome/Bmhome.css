@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.bmhome{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    background-image: linear-gradient(90deg, rgb(130, 11, 160),rgb(11, 118, 160),rgb(11, 118, 160), rgb(20, 68, 172));
+    padding-bottom: 14%;
+}
+
+.bmwelcome{
+    margin-left: 25%;
+    margin-top: 15%;
+    text-align: center;
+}
+.bmwelcome p{
+    font-weight: bolder;
+    font-size: 50px;
+}
+#bmhomelogo{
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    align-items: center;
+}
