@@ -92,34 +92,14 @@
 	max-width: 100%;
 }
 
-
-/* .col-25 {
-	float: left;
-	width: 25%;
-	margin-top: 6px;
-  }
-  
-  .col-75 {
-	float: left;
-	width: 75%;
-	margin-top: 6px;
-  }
-  
-  .row:after {
-	content: "";
-	display: table;
-	clear: both;
-  }
-  
-  @media screen and (max-width: 600px) {
-	.col-25, .col-75, input[type=submit] {
-	  width: 100%;
-	  margin-top: 0;
-	  
-	}
-} */
-@media(max-width: 1300px) { 
+@media screen and (max-width: 1200px) { 
 	.applicationimage{ 
-	  display: none;
+	 margin-left: 16%;
+	 width: 250px;
+	 height: auto;
+	}
+	.application{
+		margin-top: 40%;
+		position:sticky;
 	}
   }

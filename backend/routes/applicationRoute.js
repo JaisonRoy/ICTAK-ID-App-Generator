@@ -47,8 +47,8 @@ routes.post("/postapplication",upload.single('photo') , loginRequired, async(req
             email: req.body.email,
             photo: req.file.path,
             phone: req.body.phone,
-            // batch: req.body.batch,
-            // course: req.body.course,
+            batch: req.body.batch,
+            course: req.body.course,
             startDate: req.body.sdate,
             endDate:req.body.edate
         })
@@ -76,5 +76,7 @@ routes.get("/applicationstatus", loginRequired,  async(req, res) => {
         res.status(500).json(error);
     }
 });
+
+
 
 module.exports = routes;

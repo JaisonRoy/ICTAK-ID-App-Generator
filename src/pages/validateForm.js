@@ -54,9 +54,9 @@ export const Validateapplication = (applicationValues) => {
     } else if (!regex.test(applicationValues.email)) {
         errors.email = "Email is invalid";
     }
-    if (!applicationValues.photo) {
-        errors.photo = "Photo is required";
-    }
+    // if (!applicationValues.photo) {
+    //     errors.photo = "Photo is required";
+    // }
 
     if (!applicationValues.phoneno) {
         errors.phoneno = "Phone Number is required";
