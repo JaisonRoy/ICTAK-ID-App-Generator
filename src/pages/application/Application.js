@@ -51,11 +51,11 @@ function Application(props) {
         setErrorValues(validationErrors);
         if(Object.keys(validationErrors).length === 0)
             ApplicationDetails(formData);
-            console.log(formData)
+
     }
     
     const ApplicationDetails = async (formData) => {
-       await axios.post("/api/application/postapplication", formData,
+        axios.post("/api/application/postapplication", formData,
             {headers: {
                 'Content-Type': 'application/json',
                 'authorization': 'JWT '+ token
