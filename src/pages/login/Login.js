@@ -38,7 +38,6 @@ const Login = ({setToken}) => {
             })
             .then(res => { 
                 alert(res.data.message);
-                console.log(res.data.token);
                 localStorage.setItem("token",res.data.token)
                 if(res.data.message==="Login Successfull"){
                     navigate('/studenthome');                
