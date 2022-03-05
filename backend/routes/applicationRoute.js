@@ -1,10 +1,9 @@
 const routes = require("express").Router();
-const path = require('path');
 const multer = require('multer');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './uploads/');
+        cb(null, '../public/uploads/');
     },
     filename: function(req, file,cb){
         cb(null,new Date().toISOString().replace(/:/g, '-')+ file.originalname);
@@ -40,18 +39,18 @@ const loginRequired = (req, res, next) => {
 
 routes.post("/postapplication",upload.single('photo') , loginRequired, async(req, res) => {
 	try {
-        console.log(req.file);
         const app = new applicationModel({
             student: req.user._id,
-            name: req.body.name,
+            name: req.body.username,
             email: req.body.email,
             photo: req.file.path,
-            phone: req.body.phone,
+            phone: req.body.phoneno,
             batch: req.body.batch,
-            course: req.body.course,
-            startDate: req.body.sdate,
-            endDate:req.body.edate
+            course: req.body.coursetype,
+            startDate: req.body.startingdate,
+            endDate:req.body.endingdate
         })
+        console.log(app);
         await app.save((err, app) => {
 					if (err) {
 						return res.status(400).send({
@@ -76,7 +75,5 @@ routes.get("/applicationstatus", loginRequired,  async(req, res) => {
         res.status(500).json(error);
     }
 });
-
-
 
 module.exports = routes;

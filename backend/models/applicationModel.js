@@ -16,16 +16,17 @@ const applicationSchema = new Schema({
 	},
 	photo: {
 		type: String,
-		default: null,
 	},
 	phone: {
 		type: Number,
 	},
 	batch: {
-		type: Schema.Types.ObjectId,
+		// type: Schema.Types.ObjectId,
+		type: String,
 	},
 	course: {
-		type: Schema.Types.ObjectId,
+		// type: Schema.Types.ObjectId,
+		type: String,
 	},
 	startDate: {
 		type: Date,
