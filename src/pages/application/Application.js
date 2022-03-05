@@ -18,20 +18,16 @@ function Application(props) {
     const handleChange = (event) => {
         const { name, value } = event.target;
         setapplicationValues({ ...applicationValues, [name]: value });
-        
     }
     const dateChange = (event) => {
         const date = event.target.value;
         const myDate = new Date(date);
     }
-   
-    
 
     const handleChangeImage = (event) => {
         setFileName(event.target.files[0]);
     }
     
-
     
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -51,7 +47,6 @@ function Application(props) {
         setErrorValues(validationErrors);
         if(Object.keys(validationErrors).length === 0)
             ApplicationDetails(formData);
-
     }
     
     const ApplicationDetails = async (formData) => {
@@ -118,7 +113,7 @@ function Application(props) {
                             <label>Select Image:</label>
                         </div>
                         <div className='col-75'>
-                            <input type='file' filename= 'photo' onChange={handleChangeImage}/>
+                            <input type='file' placeholder='photo' filename= 'photo' onChange={handleChangeImage}/>
                         </div>
                         <p className="applicationerrorText">{errorValues.photo}</p><br></br>
                     </div>
@@ -158,7 +153,7 @@ function Application(props) {
                             <label>Course Ending Date:</label>
                         </div>
                         <div className='col-75'>
-                            <input type='date' placeholder='Course Ending Date' name="endingdate"  value={applicationValues.endingdate} onChange={(e)=>{handleChange(e); dateChange(e);}}/> 
+                            <input type='date' placeholder='Course Ending Date' name="endingdate"  onChange={handleChange}/> 
                         </div>
                         <p className="applicationerrorText">{errorValues.endingdate} </p><br></br>
                     </div>
