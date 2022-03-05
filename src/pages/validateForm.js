@@ -38,7 +38,7 @@ export const validateLogin = (formValues) => {
 
     return errors;
 }
-export const Validateapplication = (applicationValues) => {
+export const Validateapplication = (applicationValues,filename) => {
     const errors = {};
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     const numreg = /^\(?([0-9]{3})[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
@@ -54,13 +54,10 @@ export const Validateapplication = (applicationValues) => {
     } else if (!regex.test(applicationValues.email)) {
         errors.email = "Email is invalid";
     }
-    // if (!applicationValues.photo) {
-    //     errors.photo = "Photo is required";
-    // }
-
-    if (!applicationValues.phoneno) {
-        errors.phoneno = "Phone Number is required";
+    if (!filename) { 
+        errors.filename = "Photo is required";
     }
+
     if (!applicationValues.phoneno) {
         errors.phoneno = "Phone Number is required";
     } else if (!numreg.test(applicationValues.phoneno)) {
