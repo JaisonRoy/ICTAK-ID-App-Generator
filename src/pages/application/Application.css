@@ -45,6 +45,10 @@
 	border-radius: 5px;
 	resize: vertical;
 }
+.applicationform input:hover{
+	transition: ease-in 0.2s;
+    border: 2px solid rgb(3, 3, 3);
+}
 .applicationform label{
 	font-size: 15px;
     justify-content: center;
@@ -67,6 +71,11 @@
 	outline: none;
 	border: none;
 	border-radius: 5px;
+
+}
+.submitbutton:hover{
+	transition: ease-in 0.2s;
+    border: 4px solid rgb(3, 3, 3);
 }
 #coursetype{
     width: 61%;
@@ -79,6 +88,11 @@
 	border: none;
 	outline: none;
 	border-radius: 5px;  
+}
+
+#coursetype:hover{
+	transition: ease-in 0.2s;
+    border: 2px solid rgb(3, 3, 3);
 }
 .applicationimage{
 	position: fixed;

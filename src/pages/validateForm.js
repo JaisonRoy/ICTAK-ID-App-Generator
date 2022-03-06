@@ -55,7 +55,7 @@ export const Validateapplication = (applicationValues,filename) => {
         errors.email = "Email is invalid";
     }
     if (!filename) { 
-        errors.filename = "Photo is required";
+        errors.photo = "Photo is required";
     }
 
     if (!applicationValues.phoneno) {
