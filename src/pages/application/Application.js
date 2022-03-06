@@ -1,8 +1,9 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import { useNavigate } from 'react-router';
+import axios from 'axios';
 import './Application.css'
 import {Validateapplication} from '../validateForm';
-import axios from 'axios';
+
 
 function Application(props) {
 
@@ -13,7 +14,9 @@ function Application(props) {
 
     const token =localStorage.getItem('token');
 
-    const navigate = useNavigate;
+    const [isSubmit, setIsSubmit] = useState(false);
+
+    const navigate =useNavigate;
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -48,6 +51,25 @@ function Application(props) {
         if(Object.keys(validationErrors).length === 0)
             ApplicationDetails(formData);
     }
+
+    useEffect(() => {
+		if (Object.keys(errorValues).length === 0 && isSubmit) {
+			    axios.post("/api/user/application", {
+                     username : applicationValues.username,
+                     coursetype : applicationValues.coursetype,
+                     email : applicationValues.email,
+                    //  photo = applicationValues.photo,
+                     phoneno : applicationValues.phoneno,
+                     batch : applicationValues.batch,
+                     startingdate : applicationValues.startingdate,
+                     endingdate : applicationValues.endingdate,
+				}).then((res)=>{
+                    // alert(res.data.message);
+                    // if(res.data.message ==='Application applyed Successfully')
+                    return navigate('/status')  });
+                
+		}
+	}, [errorValues]);
     
     const ApplicationDetails = async (formData) => {
         axios.post("/api/application/postapplication", formData,
