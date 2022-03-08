@@ -13,7 +13,7 @@ function Admin(props) {
                 <img src='https://ictkerala.org/wp-content/uploads/2019/01/cropped-ict-ico.png' alt="Hlogo" id='adheaderlogo'></img>
 
                     <Link className="link" to="/admin"><br/>Home</Link>
-                    <Link className="link" to="/batch">Batch Managers</Link>
+                    <Link className="link" to="/BmList">Batch Managers</Link>
                     <Link className="link" to="/course">Course List</Link>
                     <Link className="link" to="/">Logout</Link>
     
