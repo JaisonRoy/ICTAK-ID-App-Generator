@@ -14,6 +14,7 @@ import { History } from './pages/history/History';
 import { Pending } from './pages/pending/Pending';
 import Admin from './components/admin/Admin';
 import Adhome from './pages/adhome/Adhome';
+import BmList from './components/bmlist/BmList';
 
 
 
@@ -36,6 +37,7 @@ function App() {
         <Route path="/history" element={<> <Bmhead /><History /></>} />
         <Route path="/pending" element={<> <Bmhead /><Pending /></>} />  
         <Route path="/admin" element={<> <Admin/> <Adhome /></>} />
+        <Route path="/bmlist" element={<> <Admin /><BmList /></>} />
 
       </Routes>
       
