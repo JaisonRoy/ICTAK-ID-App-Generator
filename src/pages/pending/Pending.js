@@ -81,7 +81,7 @@ function Pending(props) {
         }
     
     return (
-        <div className='statustable'>
+        <div className='pendingstatus'>
             <table>
                 <thead>
                     <tr>

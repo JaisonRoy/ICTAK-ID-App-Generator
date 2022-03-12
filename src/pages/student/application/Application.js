@@ -122,7 +122,7 @@ useEffect(()=>{
                             <option key={key}>{course.courseName}</option>
                         ))}
                     </select> 
-                    <p className="applicationerrorText">{errorValues.coursetype}</p><br></br>
+                    <p className="applicationerrorText">{errorValues.coursetype}</p>
 
                     <div className='row'>
                         <div className='col-25'>	

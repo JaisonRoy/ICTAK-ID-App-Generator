@@ -1,4 +1,29 @@
-.status{
-    color: brown;
+.statustable {
+    margin-left: 150px;
+    margin-top: 150px;
+    font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 80%;
+  }
+  
+  .statustable td,
+  .statustable th {
+    border: 1px solid rgb(8, 8, 8);
+    padding: 15px;
+  }
+  
+  .statustable tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .statustable tr:hover {
+    background-color: #ddd;
+  }
+  
+  .statustable th{
+    padding-top: 20px;
+    padding-bottom: 20px;
     text-align: center;
-}
+    background-color: #525b6e;
+    color: white;
+  }

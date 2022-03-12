@@ -25,8 +25,8 @@ function Status(props) {
     
     return (
         <div className='statustable'>
-            <table>
-                <thead>
+            <table >
+                <thead className='tablehead'>
                     <tr>
                         <th>Name</th>
                         <th>Image</th>
@@ -36,10 +36,10 @@ function Status(props) {
                 </thead>
                 <tbody>
                     <tr>
-                        <th>{studentDetails.name}</th>
-                        <th><img src={studentDetails.photo} alt='profilepic'></img></th>
-                        <th>{studentDetails.email}</th>
-                        <th>{studentDetails.isApproved}</th>
+                        <td>{studentDetails.name}</td>
+                        <td><img src={studentDetails.photo} alt='profilepic'></img></td>
+                        <td>{studentDetails.email}</td>
+                        <td>{studentDetails.isApproved}</td>
                     </tr>
                 </tbody>
             </table>
