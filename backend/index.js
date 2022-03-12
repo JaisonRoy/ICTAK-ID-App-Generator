@@ -21,7 +21,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use('/uploads', express.static('uploads'));
+app.use('/public/uploads', express.static('uploads'));
  
 // JWT setup
 app.use((req, res, next) => {
@@ -36,7 +36,7 @@ app.use((req, res, next) => {
         req.user = undefined;
         next();
     }
-});
+}); 
 
 
 //routes

@@ -1,26 +1,26 @@
 const routes = require("express").Router();
 const nodemailer = require("nodemailer");
-
 const applicationModel = require("../models/applicationModel");
 
 const loginRequired = (req, res, next) => {
 	if (req.user && req.user.isBatchManager) {
 		next();
 	} else {
-		return res.status(401).json({ message: "Unauthorized user!" });
+		return res.status(401).json({ message: "Unauthorized user!" });	
 	}
 };
 
 
 routes.get("/applications",(req, res) => {
     try {
-			applicationModel.find((err,data)=>{
+			applicationModel.find({}, (err,data) => {
                 if(err){
                     res.json(err);
                 }else{
                     res.status(200).json(data)
                 }
-            }).select("_id name course batch isApproved");
+            })
+			// .select("_id name course batch isApproved");
 			
 		} catch (error) {
 			res.status(500).json(error);
@@ -29,7 +29,7 @@ routes.get("/applications",(req, res) => {
 
 routes.get("/:id/application", loginRequired, async (req, res) => {
 	try {
-		 applicationModel.findOne({_id : req.params.id},(err, data) => {
+		applicationModel.findOne({_id : req.params.id},(err, data) => {
 				if (err) {
 					res.json(err);
 				} else {
@@ -41,17 +41,18 @@ routes.get("/:id/application", loginRequired, async (req, res) => {
 	}
 });
 
-routes.put("/:id/approveapplication",loginRequired, (req, res) => {
+routes.put("/approveapplication",loginRequired, async (req, res) => {
     try {
-			applicationModel.findOneAndUpdate({ _id: req.params.id }, {isApproved:"approved"}, (err, data) => {
+		console.log(req.body.id );
+			await applicationModel.findOneAndUpdate({ _id:req.body.id }, { $set: { isApproved: "approved" } },  (err, data) => {
 				if (err) {
 					res.json(err);
 				} else {
 
                     let mailTransporter = nodemailer.createTransport({
-						service: "gmail",
-						auth: {
-							user: "nodemailer96@gmail.com",
+						h: {
+							uservice: "gmail",
+						autser: "nodemailer96@gmail.com",
 							pass: "nayanthara@96",
 						},
 					});
@@ -71,8 +72,8 @@ routes.put("/:id/approveapplication",loginRequired, (req, res) => {
                         } else {
                             console.log(data);
                         }
-                    });                    
-					res.status(200).json(data._id+"is approved");
+                    });             
+					res.status(200).json(data._id +  " is approved");
 				}
 			});
 		} catch (error) {
@@ -82,7 +83,8 @@ routes.put("/:id/approveapplication",loginRequired, (req, res) => {
 
 routes.put("/:id/rejectapplication", loginRequired, (req, res) => {
     try {
-			 applicationModel.findOneAndUpdate({ _id: req.params.id }, {isApproved:"rejected"}, (err, data) => {
+			console.log(req.params.id );
+			applicationModel.findOneAndUpdate({ _id: req.params.id }, {isApproved:"rejected"}, (err, data) => {
 				if (err) {
 					res.json(err);
 				} else {
