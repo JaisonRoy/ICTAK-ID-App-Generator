@@ -1,7 +1,7 @@
 import React,{useEffect, useState} from 'react';
 import { useNavigate } from 'react-router';
 import './Application.css'
-import {Validateapplication} from '../validateForm';
+import {Validateapplication} from '../../validateForm';
 import axios from 'axios';
 
 function Application(props) {
