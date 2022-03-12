@@ -11,11 +11,10 @@ import Status from './pages/status/Status';
 import Bmhome from './pages/bmhome/Bmhome';
 import Bmhead from './components/bmhead/Bmhead';
 import { History } from './pages/history/History';
-import { Pending } from './pages/pending/Pending';
+import Pending from './pages/pending/Pending';
 import Admin from './components/admin/Admin';
 import Adhome from './pages/adhome/Adhome';
 import BmList from './components/bmlist/BmList';
-import CourseList from './components/courselist/CourseList';  
 
 
 
@@ -39,7 +38,6 @@ function App() {
         <Route path="/pending" element={<> <Bmhead /><Pending /></>} />  
         <Route path="/admin" element={<> <Admin/> <Adhome /></>} />
         <Route path="/bmlist" element={<> <Admin /><BmList /></>} />
-        <Route path="/courselist" element={<> <Admin /><CourseList /></>} />
 
       </Routes>
       

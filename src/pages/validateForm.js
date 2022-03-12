@@ -55,9 +55,8 @@ export const Validateapplication = (applicationValues,filename) => {
         errors.email = "Email is invalid";
     }
     if (!filename) { 
-        errors.photo = "Photo is required";
+        errors.filename = "Photo is required";
     }
-
     if (!applicationValues.phoneno) {
         errors.phoneno = "Phone Number is required";
     } else if (!numreg.test(applicationValues.phoneno)) {
@@ -65,6 +64,9 @@ export const Validateapplication = (applicationValues,filename) => {
     }
     if (!applicationValues.batch) {
         errors.batch = "Batch is required";
+    }
+    if (!applicationValues.startingdate) {
+        errors.startingdate = "Starting date is required";
     }
     return errors;
 }

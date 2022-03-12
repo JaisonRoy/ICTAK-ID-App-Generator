@@ -1,22 +1,20 @@
-import React,{useState,useEffect} from 'react';
+import React,{useEffect, useState} from 'react';
 import { useNavigate } from 'react-router';
-import axios from 'axios';
 import './Application.css'
 import {Validateapplication} from '../validateForm';
-
+import axios from 'axios';
 
 function Application(props) {
 
     const [applicationValues, setapplicationValues] = useState({ username: "",coursetype:"", email: "",  phoneno: "" , batch: "", startingdate: "", endingdate: ""});
     const [filename,setFileName] = useState("")   ;
     const [errorValues, setErrorValues] = useState({});
+    const [courseList,setCourseList]= useState([]);
+    const [batchList,setBatchList]= useState([]);
     
-
     const token =localStorage.getItem('token');
 
-    const [isSubmit, setIsSubmit] = useState(false);
-
-    const navigate =useNavigate;
+    const navigate = useNavigate;
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -31,9 +29,18 @@ function Application(props) {
         setFileName(event.target.files[0]);
     }
     
-    
     const handleSubmit = (event) => {
         event.preventDefault();
+        // for(let i=0;i<courseList.length;i++){
+        //     if(courseList[i].courseName===applicationValues.coursetype){
+        //         applicationValues.coursetype =  courseList[i]._id;
+        //     }
+        // }
+        // for(let i=0;i<batchList.length;i++){
+        //     if(batchList[i].batchNumber === applicationValues.batch){
+        //         applicationValues.batch =  batchList[i]._id;
+        //     }
+        // }
 
         const formData = new FormData();
 
@@ -51,25 +58,6 @@ function Application(props) {
         if(Object.keys(validationErrors).length === 0)
             ApplicationDetails(formData);
     }
-
-    useEffect(() => {
-		if (Object.keys(errorValues).length === 0 && isSubmit) {
-			    axios.post("/api/user/application", {
-                     username : applicationValues.username,
-                     coursetype : applicationValues.coursetype,
-                     email : applicationValues.email,
-                    //  photo = applicationValues.photo,
-                     phoneno : applicationValues.phoneno,
-                     batch : applicationValues.batch,
-                     startingdate : applicationValues.startingdate,
-                     endingdate : applicationValues.endingdate,
-				}).then((res)=>{
-                    // alert(res.data.message);
-                    // if(res.data.message ==='Application applyed Successfully')
-                    return navigate('/status')  });
-                
-		}
-	}, [errorValues]);
     
     const ApplicationDetails = async (formData) => {
         axios.post("/api/application/postapplication", formData,
@@ -78,7 +66,6 @@ function Application(props) {
                 'authorization': 'JWT '+ token
                 }
             }).then(res=>{
-                console.log(res.data);
                 if (res.status) {
                         alert("Application submitted successfully");
                         navigate("/status", { replace: true });
@@ -86,6 +73,26 @@ function Application(props) {
                         alert("Application applied Unsuccessful!");
                     }})
             }
+
+// to get course name and details
+useEffect(()=>{
+    axios.get("/api/application/courselist",
+            {headers: {
+                'Content-Type': 'application/json',
+                'authorization': 'JWT '+ token
+                }
+            }).then(res=>{
+                setCourseList(res.data);
+            });
+    axios.get("/api/application/batchlist",
+            {headers: {
+                'Content-Type': 'application/json',
+                'authorization': 'JWT '+ token
+                }
+            }).then(res=>{
+                setBatchList(res.data);
+            });
+},[])
 
 
     return (
@@ -111,12 +118,9 @@ function Application(props) {
                     <label htmlFor='coursetype'>Course type:</label>    
                     <select name="coursetype" id="coursetype"  value={applicationValues.coursetype} onChange={handleChange}>
                         <option value="" disabled> --Select Course Type--</option>
-                        <option>Full Stack Development</option>                       
-                        <option>Software Development</option>
-                        <option>Cyber Security Analyst</option>
-                        <option>Robotic Process Automation</option>
-                        <option>Data Science and Analytics</option>
-                        <option>Digital Marketing</option>
+                        {courseList.map((course,key) => (
+                            <option key={key}>{course.courseName}</option>
+                        ))}
                     </select> 
                     <p className="applicationerrorText">{errorValues.coursetype}</p><br></br>
 
@@ -137,7 +141,7 @@ function Application(props) {
                         <div className='col-75'>
                             <input type='file' placeholder='photo' filename= 'photo' onChange={handleChangeImage}/>
                         </div>
-                        <p className="applicationerrorText">{errorValues.photo}</p><br></br>
+                        <p className="applicationerrorText">{errorValues.filename}</p><br></br>
                     </div>
  
 				    <div className='row'>
@@ -155,7 +159,12 @@ function Application(props) {
                             <label>Batch:</label>
                         </div>
                         <div className='col-75'>
-                            <input  placeholder='Batch' name="batch"  value={applicationValues.batch} onChange={handleChange}/> 
+                            <select name="batch"  value={applicationValues.batch} onChange={handleChange} id="coursetype">
+                                <option value="" disabled> --Select Batch Number--</option>
+                                {batchList.map((batch,key) => (
+                                <option key={key}>{batch.batchNumber}</option>
+                                ))}
+                            </select> 
                         </div>
                         <p className="applicationerrorText">{errorValues.batch}</p><br></br>
                     </div>
@@ -177,7 +186,7 @@ function Application(props) {
                         <div className='col-75'>
                             <input type='date' placeholder='Course Ending Date' name="endingdate"  onChange={handleChange}/> 
                         </div>
-                        <p className="applicationerrorText">{errorValues.endingdate} </p><br></br>
+                       <br></br>
                     </div>
 
 					<button  className='submitbutton'>Submit</button>

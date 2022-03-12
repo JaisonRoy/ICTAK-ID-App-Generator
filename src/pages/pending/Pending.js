@@ -1,59 +1,121 @@
-import React, { useMemo } from 'react'
-import { useTable } from 'react-table'
 
-import { Coloumns } from '../history/Coloumns'
-import './Pending.css'
+import React, { useState } from 'react';
+import "./Pending.css"
+import { useEffect } from "react";
+import axios from 'axios';
 
-export const Pending = () => {
-  const columns = useMemo(() => Coloumns, [])
-  const data = useMemo(() =>  [])
 
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    footerGroups,
-    rows,
-    prepareRow
-  } = useTable({
-    columns,
-    data
-  })
+function Pending(props) {
 
-  return (
-    <>
-      <table {...getTableProps()}>
-        <thead>
-          {headerGroups.map(headerGroup => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map(column => (
-                <th {...column.getHeaderProps()}>{column.render('Header')}</th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody {...getTableBodyProps()}>
-          {rows.map(row => {
-            prepareRow(row)
-            return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map(cell => {
-                  return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-                })}
-              </tr>
-            )
-          })}
-        </tbody>
-        <tfoot>
-          {footerGroups.map(footerGroup => (
-            <tr {...footerGroup.getFooterGroupProps()}>
-              {footerGroup.headers.map(column => (
-                <td {...column.getFooterProps()}>{column.render('Footer')}</td>
-              ))}
-            </tr>
-          ))}
-        </tfoot>
-      </table>
-    </>
-  )
+    const token =localStorage.getItem('token');
+
+    const [studentDetails,setStudentDetails] = useState([]);
+    const [courseList,setCourseList]= useState([]);
+    const [batchList,setBatchList]= useState([]);
+    
+    useEffect(() => {
+        axios.get('/api/batch/applications', 
+        {headers: {
+            'Content-Type': 'application/json',
+            'authorization': 'JWT '+ token
+            }
+        })
+        .then(function (res) {
+            setStudentDetails(res.data);
+        })
+
+        axios.get("/api/application/courselist",
+            {headers: {
+                'Content-Type': 'application/json',
+                'authorization': 'JWT '+ token
+                }
+            }).then(res=>{
+                setCourseList(res.data);
+                
+            }); 
+        axios.get("/api/application/batchlist",
+            {headers: {
+                'Content-Type': 'application/json',
+                'authorization': 'JWT '+ token
+                }
+            }).then(res=>{
+                setBatchList(res.data);
+            });
+
+            // for(let j=0;j<studentDetails.length;j++){
+            //     for(let i=0;i<courseList.length;i++){
+            //         if(studentDetails[j].course === courseList[i]._id){
+            //         studentDetails[j].course =  courseList[i].courseName;
+            //         }
+            //     }
+            //     for(let i=0;i<batchList.length;i++){
+            //         if(batchList[i]._id === studentDetails[j].batch){
+            //         studentDetails[j].batch =  batchList[i].batchNumber;
+            //         }
+            //     }
+            // }
+  
+        },[])
+
+        const approve = async (id)=>{
+            console.log(id);
+            await axios.put('/api/batch/approveapplication',id,
+            { headers: {
+                'Content-Type': 'application/json',
+                'authorization': 'JWT '+ token
+                }
+            }).then(res=>{
+                alert(res.data);
+            }); 
+        }
+
+        const reject = (id)=>{
+            axios.put(`/api/batch/${id}/rejectapplication`,
+            {headers: {
+                'Content-Type': 'application/json',
+                'authorization': 'JWT '+ token
+                }
+            }).then(res=>{
+                alert(res.data);
+            }); 
+        }
+    
+    return (
+        <div className='statustable'>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Course</th>
+                        {/* <th>Image</th> */}
+                        <th>Batch</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                
+                    {studentDetails.map((student,key)=>(
+                      <tbody key ={key}>
+                        <tr>
+                            <td>{student.name}</td>
+                            <td>{student.email}</td>
+                            <td>{student.course}</td>
+                            {/* <td><img src={student.photo} alt='profilepic'></img></td> */}
+                            <td>{student.batch}</td>
+                            <td>{student.startDate.substring(0, 10)}</td>
+                            <td>{student.endDate.substring(0, 10)}</td>
+                            <td>{student.isApproved}</td> 
+                            <td><button onClick={(e)=>approve(student._id)}>Approve</button></td>
+                            <td><button onClick={(e)=>reject(student._id)}>Reject</button></td>
+                        </tr>
+                      </tbody>
+                    ))}
+            </table>
+        </div>
+    );
+ 
 }
+
+export default Pending;
