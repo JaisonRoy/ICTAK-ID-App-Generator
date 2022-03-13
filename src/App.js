@@ -16,6 +16,7 @@ import Admin from './components/admin/Admin';
 import Adhome from './pages/adhome/Adhome';
 import BmList from './components/bmlist/BmList';
 import CourseList from './components/courselist/CourseList'
+import Courses from './components/courselist/Courses';
 
 
 
@@ -38,7 +39,8 @@ function App() {
         <Route path="/pending" element={<> <Bmhead /><Pending /></>} />  
         <Route path="/admin" element={<> <Admin/> <Adhome /></>} />
         <Route path="/bmlist" element={<> <Admin /><BmList /></>} />
-        <Route path="/courselist" element={<> <Admin /><CourseList /></>} />
+        {/* <Route path="/courselist" element={<> <Admin /><CourseList /></>} /> */}
+        <Route path="/courselist" element={<> <Admin /><Courses /></>} />
 
       </Routes>
       
