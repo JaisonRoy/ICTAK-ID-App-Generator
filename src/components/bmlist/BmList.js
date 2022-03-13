@@ -25,27 +25,27 @@ import $ from 'jquery';
 // 		$("table tbody tr").eq(index + 1).find(".add, .edit").toggle();
 //         $('[data-toggle="tooltip"]').tooltip();
 //     });
-// 	// Add row on add button click
-// 	$(document).on("click", ".add", function(){
-// 		var empty = false;
-// 		var input = $(this).parents("tr").find('input[type="text"]');
-//         input.each(function(){
-// 			if(!$(this).val()){
-// 				$(this).addClass("error");
-// 				empty = true;
-// 			} else{
-//                 $(this).removeClass("error");
-//             }
-// 		});
-// 		$(this).parents("tr").find(".error").first().on("focus");
-// 		if(!empty){
-// 			input.each(function(){
-// 				$(this).parent("td").html($(this).val());
-// 			});			
-// 			$(this).parents("tr").find(".add, .edit").toggle();
-// 			$(".add-new").removeAttr("disabled");
-// 		}		
-//     });
+	// Add row on add button click
+	$(document).on("click", ".add", function(){
+		var empty = false;
+		var input = $(this).parents("tr").find('input[type="text"]');
+        input.each(function(){
+			if(!$(this).val()){
+				$(this).addClass("error");
+				empty = true;
+			} else{
+                $(this).removeClass("error");
+            }
+		});
+		$(this).parents("tr").find(".error").first().on("focus");
+		if(!empty){
+			input.each(function(){
+				$(this).parent("td").html($(this).val());
+			});			
+			$(this).parents("tr").find(".add, .edit").toggle();
+			$(".add-new").removeAttr("disabled");
+		}		
+    });
 	// Edit row on edit button click
 	$(document).on("click", ".edit", function(){		
         $(this).parents("tr").find("td:not(:last-child)").each(function(){
@@ -95,7 +95,7 @@ function BmList(props) {
                 <tbody>
                     <tr>
                         <td>John Doe</td>
-                        <td></td>
+                        <td>B1</td>
                         <td>(171) 555-2222</td>
                         <td>
                             <a className="add" title="Add" data-toggle="tooltip"><i className="material-icons">&#xE03B;</i></a>
@@ -105,7 +105,7 @@ function BmList(props) {
                     </tr>
                     <tr>
                         <td>Peter Parker</td>
-                        <td></td>
+                        <td>B2</td>
                         <td>(313) 555-5735</td>
                         <td>
                             <a className="add" title="Add" data-toggle="tooltip"><i className="material-icons">&#xE03B;</i></a>
@@ -115,7 +115,7 @@ function BmList(props) {
                     </tr>
                     <tr>
                         <td>Fran Wilson</td>
-                        <td></td>
+                        <td>B3</td>
                         <td>(503) 555-9931</td>
                         <td>
                             <a className="add" title="Add" data-toggle="tooltip"><i className="material-icons">&#xE03B;</i></a>

@@ -14,7 +14,7 @@ function Admin(props) {
                 <div className='links'>
                     <Link className="link" to="/admin"><br/>Home</Link>
                     <Link className="link" to="/BmList">Batch Managers</Link>
-                    <Link className="link" to="/course">Course List</Link><br/><hr/><br/>
+                    <Link className="link" to="/courselist">Course List</Link><br/><hr/><br/>
                     <Link className="link" to="/">Logout</Link>
                 </div>
 

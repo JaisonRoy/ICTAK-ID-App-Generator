@@ -92,7 +92,7 @@ function CourseList(props) {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Bsc Physics</td>
+                        <td>FULL STACK DEVELOPMENT</td>
                        
                         <td>
                             <a className="add" title="Add" data-toggle="tooltip"><i className="material-icons">&#xE03B;</i></a>
@@ -101,7 +101,7 @@ function CourseList(props) {
                         </td>
                     </tr>
                     <tr>
-                        <td>Bsc Chemistry</td>
+                        <td>SOFTWARE TESTING </td>
                       
                         <td>
                             <a className="add" title="Add" data-toggle="tooltip"><i className="material-icons">&#xE03B;</i></a>
@@ -110,7 +110,16 @@ function CourseList(props) {
                         </td>
                     </tr>
                     <tr>
-                        <td>BA English</td>
+                        <td>DATA SCIENCE & ANALYTICS</td>
+                      
+                        <td>
+                            <a className="add" title="Add" data-toggle="tooltip"><i className="material-icons">&#xE03B;</i></a>
+                            <a className="edit" title="Edit" data-toggle="tooltip"><i className="material-icons">&#xE254;</i></a>
+                            <a className="delete" title="Delete" data-toggle="tooltip"><i className="material-icons">&#xE872;</i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> CYBER SECURITY ANALYST</td>
                        
                         <td>
                             <a className="add" title="Add" data-toggle="tooltip"><i className="material-icons">&#xE03B;</i></a>
