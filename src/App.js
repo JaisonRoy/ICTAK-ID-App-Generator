@@ -14,8 +14,8 @@ import { History } from './pages/history/History';
 import Pending from './pages/pending/Pending';
 import Admin from './components/admin/Admin';
 import Adhome from './pages/adhome/Adhome';
-import BmList from './components/bmlist/BmList';
-import CourseList from './components/courselist/CourseList'
+import BmList from './pages/bmlist/BmList';
+import CourseList from './pages/courselist/CourseList'
 import Courses from './components/courselist/Courses';
 
 
