@@ -4,9 +4,10 @@ import "./BmList.css"
 import "bootstrap/dist/css/bootstrap.min.css"
 
 import $ from 'jquery';
-                                                                    //  I've install Jquery and Bootstrap to this project using npm installer, so please install that before use
  
-                                                                    //    There is a error in this portion from js:10 to js:47 (so please dubug before use) {Main problem is with add and save button}, I think it's a small problem.
+//    There is a error in this portion from js:10 to js:47 (so please dubug before use) {Main problem is with add and save button}, I think it's a small problem.
+
+
 // $(document).on("ready", function(){
 // 	$('[data-toggle="tooltip"]').tooltip();
 // 	var actions = $("table td:last-child").html();

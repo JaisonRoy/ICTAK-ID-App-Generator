@@ -1,8 +1,6 @@
 import React from 'react';
 import "./Bmhome.css"
 
-
-
 function Bmhome(props) {
     return (
         <div className='bmhome'>

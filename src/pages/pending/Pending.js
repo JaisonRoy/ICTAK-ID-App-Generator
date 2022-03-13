@@ -81,7 +81,7 @@ function Pending(props) {
         }
     
     return (
-        <div className='pendingstatus'>
+        <div className='statustable'>
             <table>
                 <thead>
                     <tr>
@@ -107,8 +107,9 @@ function Pending(props) {
                             <td>{student.startDate.substring(0, 10)}</td>
                             <td>{student.endDate.substring(0, 10)}</td>
                             <td>{student.isApproved}</td> 
-                            <td><button onClick={(e)=>approve(student._id)}>Approve</button></td>
-                            <td><button onClick={(e)=>reject(student._id)}>Reject</button></td>
+                            <td><button onClick={(e)=>approve(student._id)} id='btn'>Approve</button></td>
+                            <td><button onClick={(e)=>reject(student._id)} id = 'btn'>Reject</button></td>
+                            <td><button onClick={(e)=>reject(student._id)} id = 'btn'>Download</button></td>
                         </tr>
                       </tbody>
                     ))}

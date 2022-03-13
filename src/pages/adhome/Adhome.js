@@ -1,8 +1,6 @@
 import React from 'react';
 import "./Adhome.css"
 
-
-
 function Adhome(props) {
     return (
         <div className='adhome'>

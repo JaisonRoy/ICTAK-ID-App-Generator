@@ -1,29 +1,43 @@
-.pendingstatus {
-    margin-left: 90px;
+table {
+    margin-left: 251px;
     margin-top: 150px;
     font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 90%;
+    width: 80%;
   } 
   
-  .pendingstatus td,
-  .pendingstatus th {
+  table td,
+  table th {
     border: 1px solid #ddd;
     padding: 5px;
   }
   
-  .pendingstatus tr:nth-child(even) {
+  table tr:nth-child(even) {
     background-color: #f2f2f2;
   }
   
-  .pendingstatus tr:hover {
+  table tr:hover {
     background-color: #ddd;
   }
   
-  .pendingstatus th, tfoot td {
+  table th, tfoot td {
     padding-top: 20px;
     padding-bottom: 20px;
     text-align: center;
     background-color: #525b6e;
     color: white;
   }
+
+  #btn{
+    background-color: #13253a;
+    color: #04d2af;
+    padding: 3px 10px;
+    border-radius: 10px;
+    font-size:14px;
+    transition: all 0.2s ease-in-out;
+}
+#btn:hover{
+    background-color: #04d2af;
+    color: #13253a;
+    border: 2px solid #13253a;
+}
