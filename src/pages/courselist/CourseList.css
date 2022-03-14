@@ -48,7 +48,7 @@
 .table-wrapper {
     width: 1000px;
     margin: 10px auto;
-    margin-right: 300px;    
+    margin-right: 280px;    
     padding: 20px;	
     box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
@@ -133,6 +133,7 @@ table.table td .add {
     color: #ffffff;
     font-size: 25px;
     margin-bottom: -50px;
+    margin-right: -80px;
     text-decoration: underline;
     
 }
