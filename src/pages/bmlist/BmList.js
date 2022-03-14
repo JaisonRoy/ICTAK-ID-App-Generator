@@ -36,35 +36,16 @@ function BmList(props) {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>John Doe</td>
                         <td></td>
-                        <td>(171) 555-2222</td>
+                        <td></td>
+                        <td></td>
                         <td>
                             <a className="add" title="Add" data-toggle="tooltip"><i className="material-icons">&#xE03B;</i></a>
                             <a className="edit" title="Edit" data-toggle="tooltip"><i className="material-icons">&#xE254;</i></a>
                             <a className="delete" title="Delete" data-toggle="tooltip"><i className="material-icons">&#xE872;</i></a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>Peter Parker</td>
-                        <td></td>
-                        <td>(313) 555-5735</td>
-                        <td>
-                            <a className="add" title="Add" data-toggle="tooltip"><i className="material-icons">&#xE03B;</i></a>
-                            <a className="edit" title="Edit" data-toggle="tooltip"><i className="material-icons">&#xE254;</i></a>
-                            <a className="delete" title="Delete" data-toggle="tooltip"><i className="material-icons">&#xE872;</i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Fran Wilson</td>
-                        <td></td>
-                        <td>(503) 555-9931</td>
-                        <td>
-                            <a className="add" title="Add" data-toggle="tooltip"><i className="material-icons">&#xE03B;</i></a>
-                            <a className="edit" title="Edit" data-toggle="tooltip"><i className="material-icons">&#xE254;</i></a>
-                            <a className="delete" title="Delete" data-toggle="tooltip"><i className="material-icons">&#xE872;</i></a>
-                        </td>
-                    </tr>      
+                   
                 </tbody>
             </table>
         </div>
