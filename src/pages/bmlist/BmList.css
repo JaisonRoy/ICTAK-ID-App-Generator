@@ -48,8 +48,9 @@
 .table-wrapper {
     width: 1000px;
     margin: 10px auto;
-    margin-right: 300px;    
-    padding: 20px;	
+    margin-left: -200px;    
+    padding: 20px;
+    padding-right: 256px;	
     box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
 .table-title {
