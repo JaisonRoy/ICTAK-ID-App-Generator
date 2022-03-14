@@ -5,7 +5,7 @@ function Adhome(props) {
     return (
         <div className='adhome'>
          <div className='adwelcome'>
-            <img src='https://www.ajce.in/cse/images/ict_academy.png' alt ='logo' id='stuhomelogo'  />
+            <img src='https://www.ajce.in/cse/images/ict_academy.png' alt ='logo' id='adhomelogo'  />
             <p>Welcome to </p>
             <p> ICT ACADEMY OF KERALA</p>
             <p>Building the Nation's Future</p>

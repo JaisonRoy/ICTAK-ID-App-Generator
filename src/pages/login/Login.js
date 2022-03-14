@@ -75,7 +75,7 @@ const Login = ({setToken}) => {
                     <h1 id="say-hello">LOGIN</h1><br />
 
                     <input className="input" type="email" name="email" placeholder="Enter Your Email ID" id="email" required="" value={formValues.username} onChange={handleChange} />
-                    <p className="errorText">{errorValues.username}</p>
+                    <p className="errorText">{errorValues.email}</p>
 
                     <input className="input" type="password" name="password" placeholder="Enter Your Password" id="password" required="" value={formValues.password} onChange={handleChange} />
                     <p className="errorText">{errorValues.password}</p>

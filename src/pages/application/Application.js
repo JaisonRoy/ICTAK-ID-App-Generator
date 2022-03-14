@@ -121,7 +121,7 @@ useEffect(()=>{
                             <select name="coursetype" id="coursetype"  value={applicationValues.coursetype} onChange={handleChange}>
                                 <option value="" disabled> --Select Course Type--</option>
                                 {courseList.map((course,key) => (
-                                    <option key={key}>{course.courseName}</option>
+                                    <option key={key}>{course.name}</option>
                                 ))}
                             </select> 
                         </div>
@@ -166,7 +166,7 @@ useEffect(()=>{
                             <select name="batch"  value={applicationValues.batch} onChange={handleChange} id="coursetype">
                                 <option value="" disabled> --Select Batch Number--</option>
                                 {batchList.map((batch,key) => (
-                                <option key={key}>{batch.batchNumber}</option>
+                                <option key={key}>{batch.batchName}</option>
                                 ))}
                             </select> 
                         </div>

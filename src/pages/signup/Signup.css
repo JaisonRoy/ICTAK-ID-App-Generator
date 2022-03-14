@@ -13,12 +13,16 @@
   left: 50%;
   height: 580px;
   width: 430px;
+  overflow-y: scroll;
     text-align: left;
     background-color: whitesmoke;
     border-radius: .7em;
     padding: 0rem 2rem 2rem;
     box-shadow: 20px 20px 20.2px rgba(31, 30, 30, 0.671);
 
+}
+.content::-webkit-scrollbar {
+  display: none; 
 }
 
 .fld {

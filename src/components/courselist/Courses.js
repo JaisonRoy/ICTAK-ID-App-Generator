@@ -32,18 +32,18 @@ console.log(courseList)
 
 
     return (
-    <div className='courselist'>
-        <div className='table-wrap'>
-            <table className="table-table">
-                <thead>
-                <tr>
+  
+        <div className='courselist'>
+            <table className="cltable">
+                <thead id='cltablehead'>
+                <tr id='cltablerow'>
                 <th>Courses Offered</th>
                 
                 </tr>
                 </thead>
                 {courseList.map((student,key)=>(
                       <tbody key ={key}>
-                        <tr>
+                        <tr id='cltablerow'>
                             
                             <td>{student.name}</td> 
                             <td><button id='btn'>Edit</button></td>
@@ -54,7 +54,7 @@ console.log(courseList)
                       ))}
             </table>
         </div>
-    </div>
+   
     );
 }
 

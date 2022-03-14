@@ -7,7 +7,7 @@
     justify-content: center;
 	color: #13253a;
     background-color: #04d2af; 
-    height:calc(100vh - 30px);
+    height:calc(125vh - 30px);
     margin-top: 1%;
     border-radius: 10px;
     width:84%;
@@ -49,6 +49,10 @@
     color: black;
     font-weight: bold;
 	margin-left: 5%;
+}
+.applicationform p{
+	text-align: center;
+	color: red;
 }
 .row{
 	display: inline-block;
@@ -92,25 +96,20 @@
 	transition: ease-in 0.2s;
     border: 2px solid rgb(3, 3, 3);
 } */
-.applicationimage{
-	position: fixed;
-	width: 400px;
-	height: 200px;
-	overflow: hidden;
-	background-color: #f5f7f7;
-    margin-left: -20%;
-    margin-top: 15%;
-	max-width: 100%;
-}
+
 
 @media screen and (max-width: 1200px) { 
-	.applicationimage{ 
-	 margin-left: 16%;
-	 width: 250px;
-	 height: auto;
+
+	.applicationform{
+	    margin-left: 35px;
+		width: 300px;
+		overflow: hidden;
+			
 	}
-	.application{
-		margin-top: 40%;
-		position:sticky;
+	.applicationbody{
+		width:70%;
+		padding-right: 10%;
+		margin-left: 32%;
 	}
-  }
+
+}

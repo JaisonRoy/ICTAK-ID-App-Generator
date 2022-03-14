@@ -81,10 +81,10 @@ function Pending(props) {
         }
     
     return (
-        <div className='statustable'>
-            <table>
-                <thead>
-                    <tr>
+        <div id='pendingtable'>
+            <table id='pdtable'>
+                <thead id='pdtablehead'>
+                    <tr id='pdtablerow'>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Course</th>
@@ -98,7 +98,7 @@ function Pending(props) {
                 
                     {studentDetails.map((student,key)=>(
                       <tbody key ={key}>
-                        <tr>
+                        <tr id='pdtablerow'>
                             <td>{student.name}</td>
                             <td>{student.email}</td>
                             <td>{student.course}</td>

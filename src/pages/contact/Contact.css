@@ -11,12 +11,21 @@
     margin-bottom: 20px;
     text-align: center;
     background-color: whitesmoke;
+    overflow-y: scroll;
+    width: 1400px;
     border-radius: 23em;
-    padding: 1rem 4rem 2rem;
+    padding-top: 70px;
+    /* padding: 1rem 4rem 2rem; */
 
     
     box-shadow: 20px 20px 20.2px rgba(31, 30, 30, 0.671);
 
+}
+.ccontent::-webkit-scrollbar {
+    display: none; 
+}
+.ccontent p{
+    font-size: 20px;
 }
 #say-hai {
     text-align: center;
@@ -25,7 +34,14 @@
     text-shadow: 1px 1px 1px black;
     letter-spacing: 3px;
     color: rgb(32, 5, 77);
-    
-    
-  
+
   }
+
+  @media screen and (max-width: 1200px) { 
+    .ccontent {
+        border-radius: 90px;
+
+    }
+
+
+}

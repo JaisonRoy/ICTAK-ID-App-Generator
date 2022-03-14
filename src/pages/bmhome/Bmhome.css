@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap'); */
 *{
     margin: 0;
     padding: 0;
@@ -38,35 +38,18 @@
 }
 
 @media screen and (max-width: 1200px) {
+    .bmwelcome{
+        width: 340px;
+        margin-left: 30%; 
+        padding-top: 18%;
+    }
     .bmwelcome p{
         font-size: 25px;
-        margin-left: 30%;
+        margin-left: 5%;
     }
-    #bmhomelogo{
-        background-color: rgb(255, 255, 255);
-        border-radius: 10px;
-        max-width:400px;
-        width:50%;
-        height: auto;
-        margin-left: 30%;
-        margin-top: 30%;
-    
+    #bmhomelogo{        
+        margin-left: 4%;
+        
     }
 }
 
-@media screen and (max-width: 1200px) {
-    .bmwelcome p{
-        font-size: 25px;
-        margin-left: 30%;
-    }
-    #bmhomelogo{
-        background-color: rgb(255, 255, 255);
-        border-radius: 10px;
-        max-width:400px;
-        width:50%;
-        height: auto;
-        margin-left: 30%;
-        margin-top: 30%;
-    
-    }
-}

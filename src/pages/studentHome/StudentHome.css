@@ -40,7 +40,7 @@
 @media screen and (max-width: 1200px) {
     .welcome p{
         font-size: 25px;
-        margin-left: 30%;
+        margin-left: 5%;
     }
     #stuhomelogo{
         background-color: rgb(255, 255, 255);
@@ -48,8 +48,12 @@
         max-width:400px;
         width:50%;
         height: auto;
-        margin-left: 30%;
+        margin-left: 5%;
         margin-top: 30%;
     
+    }
+    .welcome{
+        width: 340px;
+        margin-left: 30%; ;
     }
 }
