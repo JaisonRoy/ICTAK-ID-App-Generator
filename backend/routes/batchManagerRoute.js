@@ -10,7 +10,6 @@ const loginRequired = (req, res, next) => {
 	}
 };
 
-
 routes.get("/applications",(req, res) => {
     try {
 			applicationModel.find({}, (err,data) => {
@@ -21,7 +20,6 @@ routes.get("/applications",(req, res) => {
                 }
             })
 			// .select("_id name course batch isApproved");
-			
 		} catch (error) {
 			res.status(500).json(error);
 		}
@@ -42,17 +40,19 @@ routes.get("/:id/application", loginRequired, async (req, res) => {
 });
 
 routes.put("/approveapplication",loginRequired, async (req, res) => {
-    try {
-		console.log(req.body.id );
-			await applicationModel.findOneAndUpdate({ _id:req.body.id }, { $set: { isApproved: "approved" } },  (err, data) => {
+	console.log(req.params.id );
+   	 try {
+		applicationModel.findOneAndUpdate(
+			{ _id:req.params.id }, 
+			{ isApproved: "approved" }, 
+			(err, data) => {
 				if (err) {
 					res.json(err);
 				} else {
-
-                    let mailTransporter = nodemailer.createTransport({
-						h: {
-							uservice: "gmail",
-						autser: "nodemailer96@gmail.com",
+					let mailTransporter = nodemailer.createTransport({
+						service: "gmail",
+						auth: {
+							user: "nodemailer96@gmail.com",
 							pass: "nayanthara@96",
 						},
 					});
@@ -67,7 +67,6 @@ routes.put("/approveapplication",loginRequired, async (req, res) => {
 
                     mailTransporter.sendMail(mailDetails, function (err, data) {
                         if (err) {
-                            res.status(500).json("Mail send Unsucessfull");
                             console.log(err);
                         } else {
                             console.log(data);
@@ -83,8 +82,10 @@ routes.put("/approveapplication",loginRequired, async (req, res) => {
 
 routes.put("/:id/rejectapplication", loginRequired, (req, res) => {
     try {
-			console.log(req.params.id );
-			applicationModel.findOneAndUpdate({ _id: req.params.id }, {isApproved:"rejected"}, (err, data) => {
+			applicationModel.findOneAndUpdate(
+				{ _id: req.params.id },
+				{isApproved:"rejected"}, 
+				(err, data) => {
 				if (err) {
 					res.json(err);
 				} else {
@@ -106,7 +107,6 @@ routes.put("/:id/rejectapplication", loginRequired, (req, res) => {
 
                     mailTransporter.sendMail(mailDetails, function (err, data) {
                         if (err) {
-                            res.status(500).json("Mail send Unsucessfull");
                             console.log(err);
                         } else {
                             console.log(data);
@@ -114,7 +114,8 @@ routes.put("/:id/rejectapplication", loginRequired, (req, res) => {
                     });                    
 					res.status(200).json(data._id+"is rejected");
 				}
-			});
+			}
+			);
 		} catch (error) {
 			res.status(500).json(error);
 		}
