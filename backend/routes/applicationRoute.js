@@ -53,6 +53,7 @@ routes.post("/postapplication",upload.single('photo') , loginRequired, async(req
         })
         await app.save((err, app) => {
 					if (err) {
+						 console.log(err)
 						return res.status(400).send({
 							message: err,
 						});
@@ -63,6 +64,7 @@ routes.post("/postapplication",upload.single('photo') , loginRequired, async(req
 		
 	} catch (error) {
 		res.status(500).json(error);
+		console.log(error);
 	}
 });
 routes.get("/courselist", loginRequired,  async(req, res) => {
