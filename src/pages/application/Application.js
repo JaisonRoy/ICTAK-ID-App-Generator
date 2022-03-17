@@ -11,6 +11,8 @@ function Application(props) {
     const [errorValues, setErrorValues] = useState({});
     const [courseList,setCourseList]= useState([]);
     const [batchList,setBatchList]= useState([]);
+    const [start, setstart] = useState(new Date());
+    const [end, setend] = useState(new Date());
     
     const token =localStorage.getItem('token');
 
@@ -49,8 +51,8 @@ function Application(props) {
         formData.append('email', applicationValues.email);
         formData.append('phoneno', applicationValues.phoneno);
         formData.append('batch', applicationValues.batch);
-        formData.append('startingdate', applicationValues.startingdate);
-        formData.append('endingdate', applicationValues.endingdate);
+        formData.append('startingdate', applicationValues.start);
+        formData.append('endingdate', applicationValues.end);
         formData.append('photo', filename);
  
         const validationErrors = Validateapplication(applicationValues,filename);
@@ -76,39 +78,44 @@ function Application(props) {
 
 // to get course name and details
 useEffect(()=>{
-    axios.get("/api/application/courselist",
-            {headers: {
-                'Content-Type': 'application/json',
-                'authorization': 'JWT '+ token
-                }
-            }).then(res=>{
+    axios.get("/api/admin/getcourse").then(res=>{
                 setCourseList(res.data);
             });
-    axios.get("/api/application/batchlist",
-            {headers: {
-                'Content-Type': 'application/json',
-                'authorization': 'JWT '+ token
-                }
-            }).then(res=>{
-                setBatchList(res.data);
-            });
+    axios.get(`/api/admin/getbatch`).then((res) => {
+			setBatchList(res.data);
+		});
 },[])
+
+useEffect(()=>{
+			axios.get(`/api/admin/${applicationValues.batch}/getbatch`).then((res) => {
+				setstart(res.data.startDate);
+                setend(res.data.endDate.format("YYYY/MM/DD"));
+			});
+},[applicationValues.batch])
 
 
     return (
         <div className='applicationbody'>
-
             <div className='application'>  
-                
-			    <form onSubmit={(e)=>handleSubmit(e)} className='applicationform' encType='multipart/form-data'>
-					<label id='applicationtitle'>Application </label><br></br>
+			    <form
+	    			onSubmit={(e)=>handleSubmit(e)} 
+				className='applicationform'
+				encType='multipart/form-data'
+			     >
+					<label id='applicationtitle'>Application </label>
+					<br></br>
 
 				    <div className='row'>
                         <div className='col-25'>	
                             <label>Name:</label> 
                         </div>
                         <div className='col-75'>
-                            <input  placeholder='Name' name="username"  value={applicationValues.username} onChange={handleChange} /> 
+                            <input 
+				placeholder='Name' 
+				name="username"  
+				value={applicationValues.username} 
+				onChange={handleChange}
+			     /> 
                         </div>
                         <p className="applicationerrorText">{errorValues.username}</p>
                     </div>
@@ -118,11 +125,21 @@ useEffect(()=>{
                             <label htmlFor='coursetype'>Course type:</label>    
                         </div>
                         <div className='col-75'>
-                            <select name="coursetype" id="coursetype"  value={applicationValues.coursetype} onChange={handleChange}>
-                                <option value="" disabled> --Select Course Type--</option>
-                                {courseList.map((course,key) => (
-                                    <option key={key}>{course.name}</option>
-                                ))}
+                            <select 
+				name="coursetype" id="coursetype"  
+				value={applicationValues.coursetype} 
+				onChange={handleChange}
+			     >
+                                <option value='' disabled>
+				{" "}
+				--Select Course Type--
+				</option>
+				{courseList.map((course, key) => (
+				<option key={key} value={course._id}>
+				{course.name}
+				</option>
+				))}
+					
                             </select> 
                         </div>
                         <p className="applicationerrorText">{errorValues.coursetype}</p>
@@ -133,7 +150,12 @@ useEffect(()=>{
                             <label>Email:</label>
                         </div>
                         <div className='col-75'>
-                            <input  placeholder='Email' name="email"  value={applicationValues.email} onChange={handleChange}/> 
+                            <input 
+				placeholder='Email' 
+				name="email"  
+				value={applicationValues.email} 
+				onChange={handleChange}
+			/> 
                         </div>
                         <p className="applicationerrorText">{errorValues.email}</p>
                     </div>              
@@ -143,7 +165,12 @@ useEffect(()=>{
                             <label>Select Image:</label>
                         </div>
                         <div className='col-75'>
-                            <input type='file' placeholder='photo' filename= 'photo' onChange={handleChangeImage}/>
+                            <input 
+				type='file'
+				placeholder='photo'
+				filename= 'photo'
+				onChange={handleChangeImage}
+			    />
                         </div>
                         <p className="applicationerrorText">{errorValues.filename}</p>
                     </div>
@@ -153,7 +180,12 @@ useEffect(()=>{
                             <label>Phone No:</label>
                         </div>
                         <div className='col-75'>
-                            <input  placeholder='Phone No' name="phoneno"  value={applicationValues.phoneno} onChange={handleChange}/>
+                            <input  
+				placeholder='Phone No' 
+				name="phoneno"  
+				value={applicationValues.phoneno} 
+				onChange={handleChange}
+			    />
                         </div>
                         <p className="applicationerrorText">{errorValues.phoneno}</p>
                     </div>
@@ -163,10 +195,20 @@ useEffect(()=>{
                             <label>Batch:</label>
                         </div>
                         <div className='col-75'>
-                            <select name="batch"  value={applicationValues.batch} onChange={handleChange} id="coursetype">
-                                <option value="" disabled> --Select Batch Number--</option>
+                            <select
+				name="batch"  
+				value={applicationValues.batch} 
+				onChange={handleChange}
+				id="coursetype"
+			    >
+                                <option 
+					value="" disabled>
+					--Select Batch Number--
+			        </option>
                                 {batchList.map((batch,key) => (
-                                <option key={key}>{batch.batchName}</option>
+                                <option key={key} value={batch._id}>
+					{batch.batchName}
+				</option>
                                 ))}
                             </select> 
                         </div>
@@ -178,7 +220,7 @@ useEffect(()=>{
                             <label>Course Starting date:</label>
                         </div>
                         <div className='col-75'>
-                            <input type='date' placeholder='Course Starting date' name="startingdate"  value={applicationValues.startingdate} onChange={(e)=>{handleChange(e); dateChange(e);}}/> 
+                            <input type='text' placeholder='Course Ending Date' value={start} disabled />
                         </div>
                         <p className="applicationerrorText">{errorValues.startingdate} </p>
                     </div>
@@ -188,7 +230,12 @@ useEffect(()=>{
                             <label>Course Ending Date:</label>
                         </div>
                         <div className='col-75'>
-                            <input type='date' placeholder='Course Ending Date' name="endingdate"  onChange={handleChange}/> 
+                            <input
+				type='text' 
+				placeholder='Course Ending Date' 
+				value={end}
+				disabled
+			    /> 
                         </div>
                     </div>
 
