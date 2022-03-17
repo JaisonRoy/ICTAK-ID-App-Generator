@@ -21,7 +21,7 @@ routes.post("/regbatchmanager", loginRequired, async (req, res) => {
 		if (takenmail) {
 			res.json({ message: "Email has already been taken" });
 		} else {
-			password = await bcrypt.hash(req.body.password, 10);
+			const password = await bcrypt.hash(req.body.password, 10);
 			const user = new userModel({
 				name: req.body.name,
 				email: req.body.email,
